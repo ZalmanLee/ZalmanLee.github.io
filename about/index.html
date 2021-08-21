@@ -8,6 +8,8 @@
 	<!-- title -->
 	
 	<title>
+	
+		About | 
 	 
 	ZalmanLee&#39;s Blog
 	</title>
@@ -143,32 +145,86 @@ var _hmt = _hmt || [];
 
 	<!-- 引入正文 -->
 	<div id="content">
-		<div id="index">
+		<h1 id="article-title">
+
+	About
+</h1>
+<div class="article-meta">
 	
-		<div class="index-li">
-			<a href="/2021/08/21/hello-world/">
-				<h2 class="index-title">
-					hello-world
-				</h2>
-				<div class="index-brief">
-					Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in 
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2021-08-21</span>
-                    
-                            
-                    
-                </div>
-		</div>	
+		<span>
+			阅读量:<span id="/about/index.html" class="leancloud_visitors" data-flag-title="About"></span>
+		</span>
 	
-	
-	<div id="index-paginator">
-		
-	</div>
+	<span>Zalman Lee</span>
+	<span>2021-08-21 23:12:15</span>
+		<div id="article-categories">
+    
+
+    
+		</div>
+
 </div>
 
+<div id="article-content">
+	
+</div>
+
+
+
+
+	<div id="vcomments"></div>
+
+
+<script>
+	
+		// 评论
+		new Valine({
+			av: AV,
+			el: '#vcomments',
+			notify: false,
+			verify: false,
+			path: window.location.pathname,
+			appId: 'OpJBCTDsxJoY0UFDLUrsuF5K-gzGzoHsz',
+			appKey: 'eTR0ITABo2RS528pt3o8dTK4',
+			placeholder: '请输入评论',
+			avatar: 'retro',
+			recordIP: false
+		})
+	
+	
+    // 显示次数
+		function showTime(Counter) {
+			var query = new AV.Query("Counter");
+			if($(".leancloud_visitors").length > 0){
+				var url = $(".leancloud_visitors").attr('id').trim();
+				// where field
+				query.equalTo("words", url);
+				// count
+				query.count().then(function (number) {
+					// There are number instances of MyClass where words equals url.
+					$(document.getElementById(url)).text(number?  number : '--');
+				}, function (error) {
+					// error is an instance of AVError.
+				});
+			}
+		}
+		// 追加pv
+		function addCount(Counter) {
+			var url = $(".leancloud_visitors").length > 0 ? $(".leancloud_visitors").attr('id').trim() : 'wujun234.github.io';
+			var Counter = AV.Object.extend("Counter");
+			var query = new Counter;
+			query.save({
+				words: url
+			}).then(function (object) {
+			})
+		}
+		$(function () {
+			var Counter = AV.Object.extend("Counter");
+			addCount(Counter);
+			showTime(Counter);
+		});
+	
+</script>
 	</div>
 	<div id="footer">
 	<p>
